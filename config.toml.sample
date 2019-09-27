@@ -1,0 +1,4 @@
+Username = "YourUsername"
+Password = "YourPassword"
+Group = "qam-auto"
+Server = "https://api.suse.de/"
