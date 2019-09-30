@@ -37,7 +37,11 @@ func main() {
 		group = &conf.Group
 		log.Printf("Group: %q\n", *group)
 	}
-	var c obs.Collection = obs.GetRRByGroup(*user, *password, *group)
+	var c obs.Collection
+	c, err = obs.GetRRByGroup(*user, *password, *group)
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	log.Printf("Matches: %v\n", c.Matches)
 	for _, request := range c.ReleaseRequests {

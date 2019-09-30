@@ -2,8 +2,9 @@ package obs
 
 import (
 	"encoding/xml"
+	"errors"
+	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"strings"
 )
@@ -55,7 +56,9 @@ func GetRepo(rr ReleaseRequest) string {
 	return repo
 }
 
-func GetRRByGroup(username string, password string, group string) Collection {
+func GetRRByGroup(username string, password string, group string) (Collection, error) {
+	v := Collection{}
+
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", "https://api.suse.de/request", nil)
 	req.SetBasicAuth(username, password)
@@ -66,20 +69,19 @@ func GetRRByGroup(username string, password string, group string) Collection {
 	req.URL.RawQuery = q.Encode()
 	resp, err := client.Do(req)
 	if err != nil {
-		log.Fatal(err)
+		return v, err
 	}
 	if resp.StatusCode < 200 || resp.StatusCode > 299 {
-		log.Fatalf("Got status code: %v\n", resp.StatusCode)
+		return v, errors.New(fmt.Sprintf("Got status code: %v\n", resp.StatusCode))
 	}
 	bodyText, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		log.Fatal(err)
+		return v, err
 	}
 
-	v := Collection{}
 	err = xml.Unmarshal([]byte(bodyText), &v)
 	if err != nil {
-		log.Fatal(err)
+		return v, err
 	}
-	return v
+	return v, err
 }
