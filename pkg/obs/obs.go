@@ -50,9 +50,9 @@ type Collection struct {
 }
 
 func GetRepo(rr ReleaseRequest) string {
-	target := rr.Actions[0].Target
-	source := rr.Actions[0].Source
-	repo := "http://download.suse.de/ibs/" + strings.Replace(rr.Actions[0].Source.Project, ":", ":/", -1) + "/" + strings.Replace(target.Project, ":", "_", -1) + "/" + source.Project + ".repo"
+	trgPrjStr := strings.Replace(rr.Actions[0].Target.Project, ":", "_", -1)
+	srcPrjStr := strings.Replace(rr.Actions[0].Source.Project, ":", ":/", -1)
+	repo := fmt.Sprintf("http://download.suse.de/ibs/%s/%s/%s.repo", srcPrjStr, trgPrjStr, rr.Actions[0].Source.Project)
 	return repo
 }
 
