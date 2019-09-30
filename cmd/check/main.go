@@ -3,8 +3,8 @@ package main
 import (
 	"flag"
 	"github.com/BurntSushi/toml"
-	"gitlab.suse.de/fgerling/qam-caasp-concourse-ressource/pkg/config"
-	"gitlab.suse.de/fgerling/qam-caasp-concourse-ressource/pkg/obs"
+	"gitlab.suse.de/fgerling/qam-caasp-concourse-resource/pkg/config"
+	"gitlab.suse.de/fgerling/qam-caasp-concourse-resource/pkg/obs"
 	"io/ioutil"
 	"log"
 )

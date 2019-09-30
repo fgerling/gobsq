@@ -1,4 +1,4 @@
-module gitlab.suse.de/fgerling/qam-caasp-concourse-ressource
+module gitlab.suse.de/fgerling/qam-caasp-concourse-resource
 
 go 1.12
 
