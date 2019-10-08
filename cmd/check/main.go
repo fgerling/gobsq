@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"github.com/BurntSushi/toml"
 	"gitlab.suse.de/fgerling/qam-caasp-concourse-resource/pkg/config"
 	"gitlab.suse.de/fgerling/qam-caasp-concourse-resource/pkg/obs"
@@ -44,7 +45,17 @@ func main() {
 	}
 
 	log.Printf("Matches: %v\n", c.Matches)
+	var when string
 	for _, request := range c.ReleaseRequests {
-		log.Printf("Repo: %v\n", obs.GetRepo(request))
+		for _, review := range request.Reviews {
+			if review.By_group == *group {
+				when = review.When
+			}
+		}
+		flag := ' '
+		if request.Priority != "" {
+			flag = '!'
+		}
+		fmt.Printf("%c %v %v\n", flag, when, obs.GetRepo(request))
 	}
 }
