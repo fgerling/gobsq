@@ -11,33 +11,38 @@ import (
 )
 
 func main() {
-
-	dat, err := ioutil.ReadFile("./config.toml")
-	if err != nil {
-		panic(err)
-	}
-	var conf config.Config
-
-	_, err = toml.Decode(string(dat), &conf)
-	if err != nil {
-		panic(err)
-	}
-
+	var config_file = flag.String("conf", "", "Set the config file.")
 	var group = flag.String("group", "", "Set the group to search for.")
 	var user = flag.String("user", "", "Set the obs user.")
 	var password = flag.String("password", "", "Set the password.")
+
 	flag.Parse()
+	if *config_file == "" {
+		*config_file = "./config.toml"
+		log.Printf("Config file: %q\n", *config_file)
+	}
+	var conf config.Config
+	dat, err := ioutil.ReadFile(*config_file)
+	if err != nil {
+		log.Printf("%+v", err)
+	} else {
+		_, err = toml.Decode(string(dat), &conf)
+		if err != nil {
+			panic(err)
+		}
+	}
 	if *user == "" {
 		user = &conf.Username
-		log.Printf("User: %q\n", *user)
 	}
+	log.Printf("User: %q\n", *user)
 	if *password == "" {
 		password = &conf.Password
 	}
 	if *group == "" {
 		group = &conf.Group
-		log.Printf("Group: %q\n", *group)
 	}
+	log.Printf("Group: %q\n", *group)
+
 	var c obs.Collection
 	c, err = obs.GetRRByGroup(*user, *password, *group)
 	if err != nil {
