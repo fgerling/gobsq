@@ -43,15 +43,12 @@ func main() {
 	}
 	log.Printf("Group: %q\n", *group)
 
-	var c obs.Collection
-	c, err = obs.GetRRByGroup(*user, *password, *group)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	log.Printf("Matches: %v\n", c.Matches)
+	var rrs []obs.ReleaseRequest
+	client := obs.NewClient(*user, *password)
+	rrs, err = client.GetReleaseRequests(*group, "new,review")
 	var when string
-	for _, request := range c.ReleaseRequests {
+
+	for _, request := range rrs {
 		for _, review := range request.Reviews {
 			if review.By_group == *group {
 				when = review.When
