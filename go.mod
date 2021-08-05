@@ -1,5 +1,8 @@
-module gitlab.suse.de/fgerling/qam-caasp-concourse-resource
+module github.com/fgerling/gobsq
 
-go 1.12
+go 1.14
 
-require github.com/BurntSushi/toml v0.3.1
+require (
+	github.com/BurntSushi/toml v0.4.1
+	github.com/fgerling/gobs v0.0.0-20200313183700-515dc9582913
+)
