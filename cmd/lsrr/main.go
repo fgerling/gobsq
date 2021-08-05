@@ -27,7 +27,6 @@ func main() {
 			panic(err)
 		}
 		*config_file = filepath.Join(home, ".gobs.toml")
-		log.Printf("Config file: %q\n", *config_file)
 	}
 	var conf config.Config
 	dat, err := ioutil.ReadFile(*config_file)
@@ -42,14 +41,12 @@ func main() {
 	if *user == "" {
 		user = &conf.Username
 	}
-	log.Printf("User: %q\n", *user)
 	if *password == "" {
 		password = &conf.Password
 	}
 	if *group == "" {
 		group = &conf.Group
 	}
-	log.Printf("Group: %q\n", *group)
 
 	var rrs []obs.ReleaseRequest
 	client := obs.NewClient(*user, *password)
