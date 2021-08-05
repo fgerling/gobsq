@@ -3,11 +3,15 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/BurntSushi/toml"
-	"gitlab.suse.de/fgerling/qam-caasp-concourse-resource/pkg/config"
-	"gitlab.suse.de/fgerling/qam-caasp-concourse-resource/pkg/obs"
 	"io/ioutil"
 	"log"
+	"os"
+	"path/filepath"
+
+	"github.com/fgerling/gobsq/pkg/config"
+
+	"github.com/BurntSushi/toml"
+	obs "github.com/fgerling/gobs"
 )
 
 func main() {

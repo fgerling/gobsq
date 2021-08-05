@@ -1,9 +1,9 @@
 all: lsrepos lsrr
 
-lsrr:  cmd/lsrr/main.go pkg/obs/
+lsrr:  cmd/lsrr/main.go
 	go build ./cmd/lsrr
 
-lsrepos: cmd/lsrepos/main.go pkg/obs/
+lsrepos: cmd/lsrepos/main.go
 	go build ./cmd/lsrepos
 
 test: lsrepos lsrr
