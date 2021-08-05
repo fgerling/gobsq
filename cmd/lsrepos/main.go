@@ -18,7 +18,12 @@ func main() {
 
 	flag.Parse()
 	if *config_file == "" {
-		*config_file = "./config.toml"
+		home, err := os.UserHomeDir()
+		if err != nil {
+			log.Printf("%+v", err)
+			panic(err)
+		}
+		*config_file = filepath.Join(home, ".gobs.toml")
 		log.Printf("Config file: %q\n", *config_file)
 	}
 	var conf config.Config
