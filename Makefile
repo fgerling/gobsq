@@ -1,11 +1,22 @@
-all: check ls-rr-caasp
+all: lsrepos lsrr
 
-ls-rr-caasp:  cmd/ls-rr-caasp/main.go pkg/obs/
-	go build ./cmd/ls-rr-caasp
-check: cmd/check/main.go pkg/obs/
-	go build ./cmd/check
-test: check ls-rr-caasp
-	./check
-	./ls-rr-caasp
+lsrr:  cmd/lsrr/main.go pkg/obs/
+	go build ./cmd/lsrr
+
+lsrepos: cmd/lsrepos/main.go pkg/obs/
+	go build ./cmd/lsrepos
+
+test: lsrepos lsrr
+	./lsrepos
+	./lsrr
+
 clean:
-	rm ./check ./ls-rr-caasp
+	rm ./lsrepos ./lsrr
+
+install_lsrepos: lsrepos
+	install lsrepos $(prefix)/bin/lsrepos
+
+install_lsrr: lsrr
+	install lsrr $(prefix)/bin/lsrr
+
+install: install_lsrepos install_lsrr
