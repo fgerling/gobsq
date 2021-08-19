@@ -1,3 +1,4 @@
 github.com/BurntSushi/toml v0.4.1 h1:GaI7EiDXDRfa8VshkTj7Fym7ha+y8/XxIgD2okUIjLw=
 github.com/BurntSushi/toml v0.4.1/go.mod h1:CxXYINrC8qIiEnFrOxCa7Jy5BFHlXnUU2pbicEuybxQ=
+github.com/fgerling/gobs v0.0.0-20200313183700-515dc9582913 h1:oXMzskcaVioaUq3t84NS33mdBdC7P9pZEQt16xdBvFI=
 github.com/fgerling/gobs v0.0.0-20200313183700-515dc9582913/go.mod h1:5OJxGWJ2uL5rj0zYxx3EljuVTBkpSZo4T/ssiP2/Xgk=
