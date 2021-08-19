@@ -6,6 +6,7 @@
 
  - **lsrepos** - list update repos of currently open release requests
  - **lsrr** - list open/unassigned release request
+ - **lsmu** - list open/unassigned maintenance updates
  
 ## Examples
 ```
@@ -31,6 +32,8 @@ $ go get -u github.com/fgerling/gobsq/cmd/lsrr
 # 
 # for lsrepos
 $ go get -u github.com/fgerling/gobsq/cmd/lsrepos
+# for lsmu
+$ go get -u github.com/fgerling/gobsq/cmd/lsmu
 ```
 
 ## Configuration
