@@ -1,6 +1,6 @@
 # gobsq
 
-**gobsq** is a collection of tools to ease and automate the querying of the open build service. 
+**gobsq** is a collection of tools to ease and automate the querying of the [open build service](https://build.opensuse.org/). 
 
 ## Tools
 
